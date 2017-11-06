@@ -12,6 +12,7 @@ import { ICategory } from './category';
 export class CategoryService {
     private categoryUrl = 'http://localhost:8090/categories';
     private headers = new Headers({ 'Content-Type': 'application/json' });
+    private requestOptions = new RequestOptions({ headers: this.headers });
 
     constructor(private http: Http) { }
 
@@ -27,32 +28,24 @@ export class CategoryService {
             .map((categories: ICategory[]) => categories.find(category => category.id === id));
     }
 
-    createCategory(name: string) {
-        let options = new RequestOptions({ headers: this.headers });
-
-        let result = this.http.post(this.categoryUrl, JSON.stringify(name), options);
-        return result.map((response: Response) => {
-            let returnedData = response.json();
-            return returnedData;
-        }).catch(this.handleError);
+    createCategory(category: any) {
+        return this.http.post(this.categoryUrl, JSON.stringify(category), this.requestOptions)
+            .map((response: Response) => { 
+                console.log(response);
+            })
+            .catch(this.handleError);
     }
 
-    updateCategory(category: any) {
-        let options = new RequestOptions({ headers: this.headers });
-
-        let result = this.http.put(this.categoryUrl + '/' + category.id, JSON.stringify(category), options);
-        return result.map((response: Response) => {
-            let returnedData = response.json();
-            return returnedData;
-        }).catch(this.handleError);
+    updateCategory(category: ICategory) {
+        return this.http.put(this.categoryUrl, JSON.stringify(category), this.requestOptions)
+            .map((response: Response) => { console.log(response); })
+            .catch(this.handleError);
     }
 
-    deleteCategory(category: any) {
-        let result = this.http.delete(this.categoryUrl + '/' + category.id);
-        return result.map((response: Response) => {
-            let returnedData = response.json();
-            return returnedData;
-        }).catch(this.handleError);
+    deleteCategory(id: number) {
+        return this.http.delete(this.categoryUrl + '/' + id)
+            .map((response: Response) => { })
+            .catch(this.handleError);
     }
 
     private handleError(error: Response) {

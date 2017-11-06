@@ -1,3 +1,59 @@
-<p>
-  admin-product works!
-</p>
+<div class="container-fluid">
+  <h1 class="display-4">Products</h1>
+  <div class="container-fluid">
+
+    <button type="button" class="btn btn-primary btn-sm" (click)="openProductModal(template, null)">Add Product</button>
+
+    <div class="old container-fluid" *ngFor="let product of products; let i = index">
+      <div class="container-fluid">
+        {{ product.name }}
+        <br> {{ getCategoryById(product.categoryId) }}
+        <br> {{ product.price | currency }}
+        <br> {{ product.stocks }}
+        <br>
+
+        <button type="button" class="btn btn-primary btn-sm" (click)="openProductModal(template, product)">Edit</button>
+        <button type="button" class="btn btn-primary btn-sm" (click)="deleteProduct(product.id, i)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{title}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form *ngIf="newProduct">
+      <div class="form-group">
+        <label for="product-name">Name</label>
+        <input [(ngModel)]="newProduct.name" name="newProduct.name" type="text" class="form-control" id="product-name" placeholder="Enter product name">
+      </div>
+      <div class="form-group">
+        <label for="product-category">Category</label>
+        <select class="form-control" name="newProduct.categoryId" [(ngModel)]="newProduct.categoryId">
+          <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="product-price">Price</label>
+        <input [(ngModel)]="newProduct.price" name="newProduct.price" type="number" class="form-control" id="product-name" placeholder="Enter price">
+      </div>
+      <div class="form-group">
+        <label for="product-stocks">Available Stocks</label>
+        <input [(ngModel)]="newProduct.stocks" name="newProduct.stocks" type="number" class="form-control" id="product-name" placeholder="Enter available stocks">
+      </div>
+      <div class="form-group">
+        <label for="product-image">Image Url</label>
+        <input [(ngModel)]="newProduct.imageUrl" name="newProduct.imageUrl" type="text" class="form-control" id="product-name" placeholder="Enter image url">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="saveCategory()">OK</button>
+    <button type="button" class="btn btn-default" (click)="modalRef.hide()">Cancel</button>
+  </div>
+</ng-template>

@@ -19,15 +19,15 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     // TODO 
-    this.categoryService.getCategories().subscribe(categories => {
-      this.productService.getProducts().subscribe(products => {
-        categories.forEach(category => {
-          let filteredProducts = products.filter(product => product.categoryId == category.id);
-          let item = new ProductList(category, filteredProducts);
-          this.productList.push(item);
-        });
-        console.log("productlist: ", this.productList);
-      });
-    });
+    // this.categoryService.getCategories().subscribe(categories => {
+    //   this.productService.getProducts().subscribe(products => {
+    //     categories.forEach(category => {
+    //       let filteredProducts = products.filter(product => product.categoryId == category.id);
+    //       let item = new ProductList(category, filteredProducts);
+    //       this.productList.push(item);
+    //     });
+    //     console.log("productlist: ", this.productList);
+    //   });
+    // });
   }
 }

@@ -12,6 +12,7 @@ import { IProduct } from './product';
 export class ProductService {
     private productUrl = 'http://localhost:8090/products';
     private headers = new Headers({ 'Content-Type': 'application/json' });
+    private requestOptions = new RequestOptions({ headers: this.headers });
     
     constructor(private http: Http) { }
 
@@ -32,32 +33,26 @@ export class ProductService {
             .map((products: IProduct[]) => products.find(product => product.id === id));
     }
 
-    createProduct(name: string) {
-        let options = new RequestOptions({ headers: this.headers });
-
-        let result = this.http.post(this.productUrl, JSON.stringify(name), options);
-        return result.map((response: Response) => {
-            let returnedData = response.json();
-            return returnedData;
-        }).catch(this.handleError);
+    createProduct(product: IProduct) {
+        return this.http.post(this.productUrl, JSON.stringify(product), this.requestOptions)
+        .map((response: Response) => { 
+            console.log(response);
+        })
+        .catch(this.handleError);
     }
 
-    updateProduct(category: any) {
-        let options = new RequestOptions({ headers: this.headers });
-
-        let result = this.http.put(this.productUrl + '/' + category.id, JSON.stringify(category), options);
-        return result.map((response: Response) => {
-            let returnedData = response.json();
-            return returnedData;
-        }).catch(this.handleError);
+    updateProduct(product: IProduct) {
+        return this.http.put(this.productUrl, JSON.stringify(product), this.requestOptions)
+        .map((response: Response) => { 
+            console.log(response);
+        })
+        .catch(this.handleError);
     }
 
-    deleteProduct(category: any) {
-        let result = this.http.delete(this.productUrl + '/' + category.id);
-        return result.map((response: Response) => {
-            let returnedData = response.json();
-            return returnedData;
-        }).catch(this.handleError);
+    deleteProduct(id: number) {
+        return this.http.delete(this.productUrl + '/' + id)
+        .map((response: Response) => { })
+        .catch(this.handleError);
     }
 
     private handleError(error: Response) {

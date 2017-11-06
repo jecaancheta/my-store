@@ -1,13 +1,28 @@
 <div class="container-fluid">
   <h1 class="display-4">Categories</h1>
   <div class="container-fluid">
-    <div class="input-group input-group-sm">
-      <input type="text" class="form-control" placeholder="Input New Category.." aria-label="Search for...">
-      <span class="input-group-btn">
-        <button class="btn btn-secondary" type="button" (click)="createCategory()">Save</button>
-        <button class="btn btn-secondary" type="button" (click)="deleteCategory()">Delete</button>        
-      </span>
-    </div>
-  </div>
 
+    <button type="button" class="btn btn-primary btn-sm" (click)="toggleAddMode()" [disabled]="addMode">Add Category</button>
+
+    <div class="old container-fluid" *ngFor="let category of categories; let i = index">
+      <div class="input-group input-group-sm">
+        <input type="text" [(ngModel)]="category.name" class="form-control">
+        <span class="input-group-btn">
+          <button class="btn btn-secondary" type="button" (click)="updateCategory(category)">Save</button>
+          <button class="btn btn-secondary" type="button" (click)="deleteCategory(category.id, i)">Delete</button>
+        </span>
+      </div>
+    </div>
+
+    <div class="new container-fluid" *ngIf="addMode">
+      <div class="input-group input-group-sm">
+        <input type="text" [(ngModel)]="newCategory" class="form-control" placeholder="Input New Category..">
+        <span class="input-group-btn">
+          <button class="btn btn-secondary" type="button" (click)="createCategory()">Add</button>
+          <button class="btn btn-secondary" type="button" (click)="toggleAddMode()">Delete</button>
+        </span>
+      </div>
+    </div>
+
+  </div>
 </div>
