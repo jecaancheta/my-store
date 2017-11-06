@@ -12,6 +12,7 @@ import { CategoryService } from './../../shared/category.service';
   styleUrls: ['./admin-product.component.css']
 })
 export class AdminProductComponent implements OnInit {
+  filteredProducts: IProduct[];
   products: IProduct[];
   categories: ICategory[];
   modalRef: BsModalRef;
@@ -27,6 +28,7 @@ export class AdminProductComponent implements OnInit {
   getProducts() {
     this.productService.getProducts().subscribe(result => {
       this.products = result;
+      this.filteredProducts = this.products;
     });
   }
 
@@ -53,8 +55,8 @@ export class AdminProductComponent implements OnInit {
     });
   }
 
-  getCategoryById(id: number) : string {
-    return this.categories.find(category => category.id == id ).name;
+  getCategoryById(id: number): string {
+    return this.categories.find(category => category.id == id).name;
   }
 
   getCategories() {
@@ -76,4 +78,36 @@ export class AdminProductComponent implements OnInit {
     }
   }
 
+  filterByCategory(name: string) {
+    this.filteredProducts = this.products.filter(product => {
+      let category: ICategory = this.categories.find(category => category.id == product.categoryId);
+      return category.name == name;
+    });
+  }
+
+
 }
+
+function sortByNameAsc(product1: IProduct, product2: IProduct) {
+  if (product1.name > product2.name) return 1;
+  else if (product1.name === product2.name ) return 0;
+  else return -1;
+}
+
+function sortByCategoryAsc(product1: IProduct, product2: IProduct) {
+  let categoryName1 = this.categories.find(category => category.id = product1.categoryId).name;
+  let categoryName2 = this.categories.find(category => category.id = product2.categoryId).name;
+
+  if (categoryName1 > categoryName2) return 1;
+  else if (categoryName1 === categoryName2 ) return 0;
+  else return -1;
+}
+
+function sortByStocksDesc(product1: IProduct, product2: IProduct) {
+  return product2.stocks - product1.stocks;
+}
+
+function sortByPriceDesc(product1: IProduct, product2: IProduct) {
+  return product2.price - product1.price;
+}
+
