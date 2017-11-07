@@ -1,46 +1,13 @@
-<!-- <div class="container-fluid">
-  <h1 class="display-4">Categories</h1>
-  <div class="container-fluid">
-
-    <button type="button" class="btn btn-primary btn-sm" (click)="toggleAddMode()" [disabled]="addMode">Add Category</button>
-
-    <div class="old container-fluid" *ngFor="let category of filteredCategories; let i = index">
-      <div class="input-group input-group-sm">
-        <input type="text" [(ngModel)]="category.name" class="form-control">
-        <span class="input-group-btn">
-          <button class="btn btn-secondary" type="button" (click)="updateCategory(category)">Save</button>
-          <button class="btn btn-secondary" type="button" (click)="deleteCategory(category.id, i)">Delete</button>
-        </span>
-      </div>
-    </div>
-
-    <div class="new container-fluid" *ngIf="addMode">
-      <div class="input-group input-group-sm">
-        <input type="text" [(ngModel)]="newCategory" class="form-control" placeholder="Input New Category..">
-        <span class="input-group-btn">
-          <button class="btn btn-secondary" type="button" (click)="createCategory()">Add</button>
-          <button class="btn btn-secondary" type="button" (click)="toggleAddMode()">Delete</button>
-        </span>
-      </div>
-    </div>
-
-  </div>
-</div> -->
-
 <div class="container-fluid">
   <div class="container-fluid">
-    <div id="header" class="container-fluid">
-      <div class="row">
+    <div class="container-fluid">
+      <div class="row" id="action-header">
         <div class="col">
-          <h4>Categories</h4>
-        </div>
-        <div class="col">
-            <button type="button" class="btn btn-primary btn-sm action-grp" (click)="toggleAddMode()" [disabled]="addMode">Add Category</button>
-            
+          <button type="button" class="btn btn-primary action-grp" (click)="toggleAddMode()" [disabled]="addMode">Add Category</button>
         </div>
       </div>
       <div class="container-fluid">
-        <table class="table table-bordered table-sm" cellspacing="0" width="100%">
+        <table class="table" cellspacing="0" width="100%">
           <thead>
             <tr>
               <th scope="col" (click)="sort('name')">Name
@@ -53,26 +20,26 @@
             <tr *ngFor="let category of categories; let i = index">
               <td>
                 <div class="input-group">
-                  <input type="text" [(ngModel)]="category.name" class="form-control">
-                  <span class="input-group-addon">
-                    <span class="fa fa-pencil-square-o" (click)="updateCategory(category)"></span>
-                  </span>
-                  <span class="input-group-addon">
-                    <span class="fa fa-times-circle" (click)="deleteCategory(category.id, i)"></span>
-                  </span>
+                  <input type="text" [(ngModel)]="category.name" class="form-control category-name action-grp-btn">
+                  <button type="button" class="btn btn-warning action-grp action-grp-btn" (click)="updateCategory(category)">
+                    <span class="fa fa-pencil-square-o"></span>
+                  </button>
+                  <button type="button" class="btn btn-danger action-grp action-grp-btn" (click)="deleteCategory(category.id, i)">
+                    <span class="fa fa-times-circle"></span>
+                  </button>
                 </div>
               </td>
             </tr>
             <tr *ngIf="addMode">
               <td>
                 <div class="input-group">
-                  <input type="text" [(ngModel)]="newCategory" class="form-control">
-                  <span class="input-group-addon">
-                    <span class="fa fa-pencil-square-o" (click)="createCategory()"></span>
-                  </span>
-                  <span class="input-group-addon">
-                    <span class="fa fa-times-circle" (click)="toggleAddMode()"></span>
-                  </span>
+                  <input type="text" [(ngModel)]="newCategory" class="form-control category-name action-grp-btn">
+                  <button type="button" class="btn btn-warning action-grp action-grp-btn" (click)="createCategory()">
+                    <span class="fa fa-pencil-square-o"></span>
+                  </button>
+                  <button type="button" class="btn btn-danger action-grp action-grp-btn" (click)="toggleAddMode()">
+                    <span class="fa fa-times-circle"></span>
+                  </button>
                 </div>
               </td>
             </tr>

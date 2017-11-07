@@ -18,8 +18,8 @@
     float: right;
 }
 
-#header {
-    margin-top: 20px;
+#action-header {
+    margin-top: 30px;
     margin-bottom: 10px;
 }
 
@@ -30,6 +30,14 @@
     height: 31px;
 }
 
-.filter {
-    margin-right: 20px;    
+.action-grp-btn {
+    margin-right: 10px;    
+}
+
+.table-no-result {
+    text-align: center;
+}
+
+.image-url {
+    text-align: center;
 }

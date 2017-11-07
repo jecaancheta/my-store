@@ -1,23 +1,29 @@
 <div class="container-fluid">
   <div class="container-fluid">
-    <div id="header" class="container-fluid">
+    <div id="action-header" class="container-fluid">
       <div class="row">
         <div class="col">
-          <h4>Products</h4>
-        </div>
-        <div class="col">
-
-          <button type="button" class="btn btn-primary btn-sm action-grp" (click)="openProductModal(template, null)">Add Product</button>
-          <select class="form-control action-grp filter" id="filter-options" (change)="filterByCategory()" name="filterBy" 
-          [(ngModel)]="filterBy">
-            <option *ngFor="let category of categories" [ngValue]="category.name">{{category.name}}</option>
-          </select>
-          <span class="action-grp filter">Filter By: </span>
+          <div class="btn-group action-grp filter" dropdown placement="bottom right">
+            <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+              Filter By
+              <span class="caret"></span>
+            </button>
+            <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu" >
+              <li role="menuitem" *ngFor="let category of categories">
+                <a class="dropdown-item" (click)="filterByCategory(category.name)">{{category.name}}</a>
+              </li>
+              <li *ngIf="filterBy != 'none'" class="divider dropdown-divider"></li>
+              <li role="menuitem" *ngIf="filterBy != 'none'">
+                <a class="dropdown-item" (click)="filterByCategory('none')">None</a>
+              </li>
+            </ul>
+          </div>
+          <button type="button" class="btn btn-primary action-grp action-grp-btn" (click)="openProductModal(template, null)">Add Product</button>
         </div>
       </div>
     </div>
     <div class="container-fluid">
-      <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+      <table class="table table-responsive" cellspacing="0" width="100%">
         <thead>
           <tr>
             <th scope="col" (click)="sort('name')">Name
@@ -47,13 +53,16 @@
             <td>{{ product.price | currency }}</td>
             <td>{{ product.stocks }}</td>
             <td class="action-column">
-              <button type="button" class="btn btn-warning btn-sm" (click)="openProductModal(template, product)">
+              <button type="button" class="btn btn-warning action-grp action-grp-btn" (click)="openProductModal(template, product)">
                 <span class="fa fa-pencil-square-o"></span>
               </button>
-              <button type="button" class="btn btn-danger btn-sm" (click)="deleteProduct(product.id, i)">
+              <button type="button" class="btn btn-danger action-grp action-grp-btn" (click)="deleteProduct(product.id, i)">
                 <span class="fa fa-times-circle"></span>
               </button>
             </td>
+          </tr>
+          <tr *ngIf="filteredProducts.length == 0">
+            <td colspan="5" class="table-no-result">No data found.</td>
           </tr>
       </table>
     </div>
@@ -90,6 +99,9 @@
       <div class="form-group">
         <label for="product-image">Image Url</label>
         <input [(ngModel)]="newProduct.imageUrl" name="newProduct.imageUrl" type="text" class="form-control" id="product-name" placeholder="Enter image url">
+      </div>
+      <div class="form-group image-url">
+        <img [src]="newProduct.imageUrl" height="200px">
       </div>
     </form>
   </div>

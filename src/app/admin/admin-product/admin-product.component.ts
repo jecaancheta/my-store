@@ -82,11 +82,16 @@ export class AdminProductComponent implements OnInit {
     }
   }
 
-  filterByCategory() {
-    this.filteredProducts = this.products.filter(product => {
-      const category: ICategory = this.categories.find(category => category.id === product.categoryId);
-      return category.name === this.filterBy;
-    });
+  filterByCategory(filterBy: string) {
+    this.filterBy = filterBy;
+    if (this.filterBy === 'none') {
+      return this.filteredProducts = this.products;      
+    } else {
+      this.filteredProducts = this.products.filter(product => {
+        const category: ICategory = this.categories.find(category => category.id === product.categoryId);
+        return category.name === this.filterBy;
+      });
+    }
   }
 
   toggleSort() {

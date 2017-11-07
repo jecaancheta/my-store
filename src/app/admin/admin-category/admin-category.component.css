@@ -2,7 +2,15 @@
     float: right;
 }
 
-#header {
-    margin-top: 20px;
+#action-header {
+    margin-top: 30px;
     margin-bottom: 10px;
+}
+
+.action-grp-btn {
+    margin-right: 10px;    
+}
+
+.category-name {
+    border-radius: .25rem!important;
 }
