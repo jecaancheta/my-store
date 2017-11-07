@@ -11,23 +11,35 @@ import { IProduct } from './../../shared/product';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-
-  private productList: ProductList[];
+  searchTerm: String;
+  categories: ICategory[];
+  products: IProduct[];
 
   constructor(private categoryService: CategoryService,
     private productService: ProductService) { }
 
   ngOnInit() {
-    // TODO 
-    // this.categoryService.getCategories().subscribe(categories => {
-    //   this.productService.getProducts().subscribe(products => {
-    //     categories.forEach(category => {
-    //       let filteredProducts = products.filter(product => product.categoryId == category.id);
-    //       let item = new ProductList(category, filteredProducts);
-    //       this.productList.push(item);
-    //     });
-    //     console.log("productlist: ", this.productList);
-    //   });
-    // });
+    this.categoryService.getCategories().subscribe(categories => {
+      this.categories = categories;
+      this.productService.getProducts().subscribe(products => {
+        this.products = products;
+      });
+    });
+  }
+
+  getProducts(categoryId: number) {
+    if (this.products != null && this.products.length > 0) {
+      return this.products.filter(product => product.categoryId === categoryId);
+    }
+
+    return null;
+  }
+
+  filterCategories() {
+    return this.categories.filter(category => category.name === this.searchTerm);
+  }
+
+  filterProducts() {
+    return this.products.filter(product => product.name === this.searchTerm);
   }
 }

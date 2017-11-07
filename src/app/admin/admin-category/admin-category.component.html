@@ -1,10 +1,10 @@
-<div class="container-fluid">
+<!-- <div class="container-fluid">
   <h1 class="display-4">Categories</h1>
   <div class="container-fluid">
 
     <button type="button" class="btn btn-primary btn-sm" (click)="toggleAddMode()" [disabled]="addMode">Add Category</button>
 
-    <div class="old container-fluid" *ngFor="let category of categories; let i = index">
+    <div class="old container-fluid" *ngFor="let category of filteredCategories; let i = index">
       <div class="input-group input-group-sm">
         <input type="text" [(ngModel)]="category.name" class="form-control">
         <span class="input-group-btn">
@@ -25,4 +25,58 @@
     </div>
 
   </div>
-</div>
+</div> -->
+
+<div class="container-fluid">
+  <div class="container-fluid">
+    <div id="header" class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <h4>Categories</h4>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-primary btn-sm action-grp" (click)="toggleAddMode()" [disabled]="addMode">Add Category</button>
+            
+        </div>
+      </div>
+      <div class="container-fluid">
+        <table class="table table-bordered table-sm" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th scope="col" (click)="sort('name')">Name
+                <span *ngIf="sortBy === 'name'" class="fa fa-long-arrow-down sort-icon" [ngClass]="{'icon-not-toggled': isDescNotToggled('name')}"></span>
+                <span *ngIf="sortBy === 'name'" class="fa fa-long-arrow-up sort-icon" [ngClass]="{'icon-not-toggled': isAscNotToggled('name')}"></span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let category of categories; let i = index">
+              <td>
+                <div class="input-group">
+                  <input type="text" [(ngModel)]="category.name" class="form-control">
+                  <span class="input-group-addon">
+                    <span class="fa fa-pencil-square-o" (click)="updateCategory(category)"></span>
+                  </span>
+                  <span class="input-group-addon">
+                    <span class="fa fa-times-circle" (click)="deleteCategory(category.id, i)"></span>
+                  </span>
+                </div>
+              </td>
+            </tr>
+            <tr *ngIf="addMode">
+              <td>
+                <div class="input-group">
+                  <input type="text" [(ngModel)]="newCategory" class="form-control">
+                  <span class="input-group-addon">
+                    <span class="fa fa-pencil-square-o" (click)="createCategory()"></span>
+                  </span>
+                  <span class="input-group-addon">
+                    <span class="fa fa-times-circle" (click)="toggleAddMode()"></span>
+                  </span>
+                </div>
+              </td>
+            </tr>
+        </table>
+      </div>
+    </div>
+  </div>

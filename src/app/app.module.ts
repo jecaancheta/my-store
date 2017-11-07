@@ -5,6 +5,7 @@ import { ProductModule } from './products/product.module';
 import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
+import { AlertModule } from 'ngx-bootstrap';
 // import { ModalModule } from 'ngx-bootstrap/modal';
 // import { ModalContentComponent } from './shared/product-modal.component'
 

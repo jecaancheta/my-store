@@ -7,14 +7,19 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminProductComponent } from './admin-product/admin-product.component';
 import { AdminCategoryComponent } from './admin-category/admin-category.component';
 
+import { DataTableDirective } from './data-table.directive';
+
 @NgModule({
   imports: [
     CommonModule,
     AdminRoutingModule,
     HttpModule,
-    FormsModule,
-    
+    FormsModule
   ],
-  declarations: [AdminProductComponent, AdminCategoryComponent]
+  declarations: [
+    AdminProductComponent,
+    AdminCategoryComponent,
+    DataTableDirective
+  ]
 })
 export class AdminModule { }

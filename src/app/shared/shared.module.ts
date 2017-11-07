@@ -10,11 +10,11 @@ import { ModalModule } from 'ngx-bootstrap/modal';
   imports: [
     CommonModule,
     ModalModule.forRoot(),
-    FormsModule  
+    FormsModule
   ],
   providers: [
     CategoryService,
-    ProductService
+    ProductService,
   ]
 })
 export class SharedModule { }

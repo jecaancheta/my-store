@@ -10,7 +10,7 @@ import { ICategory } from './../../shared/category';
 export class AdminCategoryComponent implements OnInit {
   categories: ICategory[];
   newCategory: string;
-  addMode: boolean = false;
+  addMode: Boolean = false;
 
   constructor(private categoryService: CategoryService) { }
 
