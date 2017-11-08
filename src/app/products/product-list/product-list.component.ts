@@ -4,6 +4,7 @@ import { CategoryService } from './../../shared/category.service';
 import { ProductList } from './product-list';
 import { ICategory } from './../../shared/category';
 import { IProduct } from './../../shared/product';
+import  { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -16,15 +17,12 @@ export class ProductListComponent implements OnInit {
   products: IProduct[] = [];
 
   constructor(private categoryService: CategoryService,
-    private productService: ProductService) { }
+    private productService: ProductService,
+  private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.categoryService.getCategories().subscribe(categories => {
-      this.categories = categories;
-      this.productService.getProducts().subscribe(products => {
-        this.products = products;
-      });
-    });
+    this.categories = this.route.snapshot.data['categories'];
+    this.products = this.route.snapshot.data['products'];
   }
 
   getProducts(categoryId: number, searchTerm: string) {
@@ -59,11 +57,4 @@ export class ProductListComponent implements OnInit {
   filterProducts(searchTerm: string) {
     return this.products.filter(product => product.name === searchTerm);
   }
-
-  // 1. Check kung meron sa categories
-  // 2. If true, display all products
-  // 3. If none, filter all
-
-  // 1. hasCategories || hasProducts
-  // 
 }

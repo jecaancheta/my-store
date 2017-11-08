@@ -20,7 +20,7 @@ export class AdminProductComponent implements OnInit {
   sortByAsc: Boolean = true;
   sortBy: String = 'name';
   previousSortBy: String = 'name';
-  filterBy: String = '';
+  filterBy: String = 'none';
 
   constructor(private productService: ProductService, private categoryService: CategoryService, private modalService: BsModalService) { }
 
@@ -32,7 +32,8 @@ export class AdminProductComponent implements OnInit {
   getProducts() {
     this.productService.getProducts().subscribe(result => {
       this.products = result;
-      this.filteredProducts = this.products;
+      this.filteredProducts = this.filterByCategory(this.filterBy.toString());
+      this.filteredProducts = this.filteredProducts.sort(this.sortByNameAsc);
     });
   }
 

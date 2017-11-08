@@ -1,7 +1,7 @@
 <div>
     <div collapsible-title class="row category">
         <div class="col">
-            <a routerLink="products/{{category.id}}" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">{{ item.name }}</a>
+            <a routerLink="products/{{item.id}}" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">{{ item.name }}</a>
         </div>
         <div class="col">
             {{ getTotalStocks() }}
@@ -14,7 +14,7 @@
 <div *ngIf="visible">
     <div *ngFor="let product of itemProducts">
         <div class="col">
-            {{ product.name }}
+            <a routerLink="products/{{product.id}}" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">{{ product.name }}</a>
         </div>
         <div class="col">
             {{ product.price | currency }}

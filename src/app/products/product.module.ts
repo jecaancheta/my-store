@@ -6,12 +6,14 @@ import { ProductRoutingModule } from './product-routing.module';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { CollapsibleComponent } from './collapsible.directive';
+import { SharedModule } from './../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     ProductRoutingModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   declarations: [ProductListComponent, ProductDetailComponent, CollapsibleComponent]
 })

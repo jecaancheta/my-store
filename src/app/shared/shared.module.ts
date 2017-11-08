@@ -6,6 +6,9 @@ import { CategoryService } from './category.service';
 import { ProductService } from './product.service';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
+import { CategoryResolver } from './category-resolver.service';
+import { ProductResolver } from './product-resolver.service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +18,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
   providers: [
     CategoryService,
     ProductService,
+    ProductResolver,
+    CategoryResolver
   ]
 })
 export class SharedModule { }
