@@ -4,8 +4,8 @@ import { AdminCategoryComponent } from './admin-category/admin-category.componen
 import { AdminProductComponent } from './admin-product/admin-product.component';
 
 const routes: Routes = [
-  { path: 'admin/category',  component: AdminCategoryComponent },
-  { path: 'admin/product', component: AdminProductComponent }
+  { path: 'manage/category',  component: AdminCategoryComponent },
+  { path: 'manage/product', component: AdminProductComponent }
 ];
 
 @NgModule({

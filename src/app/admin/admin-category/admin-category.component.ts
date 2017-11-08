@@ -11,6 +11,8 @@ export class AdminCategoryComponent implements OnInit {
   categories: ICategory[];
   newCategory: string;
   addMode: Boolean = false;
+  sortByAsc: Boolean = true;
+  sortBy: String = 'name';
 
   constructor(private categoryService: CategoryService) { }
 
@@ -20,14 +22,14 @@ export class AdminCategoryComponent implements OnInit {
 
   getCategories() {
     this.categoryService.getCategories().subscribe(result => {
-      this.categories = result;
+      this.categories = result.sort(this.sortByNameAsc);
     });
   }
 
   createCategory() {
     let newCategory = {
       name: this.newCategory
-    }
+    };
 
     this.categoryService.createCategory(newCategory).subscribe(result => {
       this.newCategory = ' ';
@@ -51,4 +53,54 @@ export class AdminCategoryComponent implements OnInit {
     this.addMode = !this.addMode;
   }
 
+  hasNoResult() {
+    return !this.addMode && (this.categories == null || this.categories.length == 0);
+  }
+
+  toggleSort() {
+    this.sortByAsc = !this.sortByAsc;
+  }
+
+  sort(sortBy: string) {
+    this.sortBy = sortBy;
+    this.toggleSort();
+
+
+    if (this.sortBy === 'name') {
+      if (this.sortByAsc) {
+        this.categories.sort(this.sortByNameAsc);
+      } else {
+        this.categories.reverse();
+        // this.categories.sort(this.sortByNameDesc);
+      }
+    }
+  }
+
+  isAscNotToggled(sortOrder: string) {
+    return this.sortBy === sortOrder && !this.sortByAsc;
+  }
+
+  isDescNotToggled(sortOrder: string) {
+    return this.sortBy === sortOrder && this.sortByAsc;
+  }
+
+  sortByNameAsc(category1: ICategory, category2: ICategory) {
+    if (category1.name.toLowerCase() < category2.name.toLowerCase().toLowerCase()) {
+      return -1;
+    } else if (category1.name.toLowerCase() > category2.name.toLowerCase()) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+
+  sortByNameDesc(category1: ICategory, category2: ICategory) {
+    if (category1.name > category2.name) {
+      return -1;
+    } else if (category1.name === category2.name) {
+      return 0;
+    } else {
+      return 1;
+    }
+  }
 }

@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="container-fluid">
-      <table class="table table-responsive" cellspacing="0" width="100%">
+      <table class="table table-bordered" cellspacing="0" width="100%">
         <thead>
           <tr>
             <th scope="col" (click)="sort('name')">Name
@@ -61,7 +61,7 @@
               </button>
             </td>
           </tr>
-          <tr *ngIf="filteredProducts.length == 0">
+          <tr *ngIf="hasNoResult()">
             <td colspan="5" class="table-no-result">No data found.</td>
           </tr>
       </table>

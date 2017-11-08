@@ -8,11 +8,13 @@ import { SharedModule } from './shared/shared.module';
 import { AlertModule } from 'ngx-bootstrap';
 // import { ModalModule } from 'ngx-bootstrap/modal';
 // import { ModalContentComponent } from './shared/product-modal.component'
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 @NgModule({
   declarations: [
     AppComponent,
     // ModalContentComponent
+    
   ],
   imports: [
     AppRoutingModule,
@@ -20,7 +22,7 @@ import { AlertModule } from 'ngx-bootstrap';
     ProductModule,
     AdminModule,
     SharedModule,
-    
+    CollapseModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

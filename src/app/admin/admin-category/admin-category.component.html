@@ -7,7 +7,7 @@
         </div>
       </div>
       <div class="container-fluid">
-        <table class="table" cellspacing="0" width="100%">
+        <table class="table table-striped table-bordered" cellspacing="0" width="100%">
           <thead>
             <tr>
               <th scope="col" (click)="sort('name')">Name
@@ -34,14 +34,17 @@
               <td>
                 <div class="input-group">
                   <input type="text" [(ngModel)]="newCategory" class="form-control category-name action-grp-btn">
-                  <button type="button" class="btn btn-warning action-grp action-grp-btn" (click)="createCategory()">
-                    <span class="fa fa-pencil-square-o"></span>
+                  <button type="button" class="btn btn-success action-grp action-grp-btn" (click)="createCategory()">
+                    <span class="fa fa-check-circle"></span>
                   </button>
                   <button type="button" class="btn btn-danger action-grp action-grp-btn" (click)="toggleAddMode()">
                     <span class="fa fa-times-circle"></span>
                   </button>
                 </div>
               </td>
+            </tr>
+            <tr *ngIf="hasNoResult()">
+              <td colspan="1" class="table-no-result">No data found.</td>
             </tr>
         </table>
       </div>

@@ -208,7 +208,9 @@ export class AdminProductComponent implements OnInit {
     return product1.price - product2.price;
   }
 
-
+  hasNoResult() {
+    return this.filteredProducts == null || this.filteredProducts.length == 0;
+  }
 }
 
 

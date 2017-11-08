@@ -12,8 +12,8 @@ import { IProduct } from './../../shared/product';
 })
 export class ProductListComponent implements OnInit {
   searchTerm: String = '';
-  categories: ICategory[];
-  products: IProduct[];
+  categories: ICategory[] = [];
+  products: IProduct[] = [];
 
   constructor(private categoryService: CategoryService,
     private productService: ProductService) { }
@@ -29,7 +29,7 @@ export class ProductListComponent implements OnInit {
 
   getProducts(categoryId: number, searchTerm: string) {
     let noSearchTerm = false;
-    if (searchTerm == '') {
+    if (searchTerm === '') {
       noSearchTerm = true;
     }
     if (this.products != null && this.products.length > 0) {
@@ -41,10 +41,6 @@ export class ProductListComponent implements OnInit {
     return null;
   }
 
-  hasCategories() {
-
-  }
-
   getFilteredProducts(name: string, id: number, searchTerm: string) {
     return this.isCategoryFilterPassed(name, searchTerm) ? this.getProducts(id, '') : this.getProducts(id, searchTerm);
   }
@@ -54,8 +50,8 @@ export class ProductListComponent implements OnInit {
   }
 
   isCategoryFilterPassed(name: string, searchTerm: string) {
-    if (searchTerm != '') {
-      return name.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase());      
+    if (searchTerm !== '') {
+      return name.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase());
     }
     return true;
   }
