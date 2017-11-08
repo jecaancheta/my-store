@@ -8,10 +8,15 @@ import { LoginService } from './login/login.service';
 })
 export class AppComponent {
   title = 'app';
+  isCollapsed = true;
 
   constructor(private loginService: LoginService) {}
 
   isUserLoggedIn() {
     return this.loginService.isLoggedIn();
+  }
+
+  toggleCollapse() {
+    this.isCollapsed = !this.isCollapsed;
   }
 }

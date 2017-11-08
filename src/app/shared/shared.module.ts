@@ -4,22 +4,29 @@ import { FormsModule } from '@angular/forms';
 
 import { CategoryService } from './category.service';
 import { ProductService } from './product.service';
-import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { CategoryResolver } from './category-resolver.service';
 import { ProductResolver } from './product-resolver.service';
 
+import { AlertComponent } from './alert.component';
+
 @NgModule({
   imports: [
-    CommonModule,
-    ModalModule.forRoot(),
-    FormsModule
+    CommonModule
   ],
   providers: [
     CategoryService,
     ProductService,
     ProductResolver,
     CategoryResolver
+  ],
+  declarations: [
+    AlertComponent
+  ],
+  exports: [
+    CommonModule,
+    FormsModule,
+    AlertComponent
   ]
 })
 export class SharedModule { }

@@ -13,15 +13,14 @@ import { HomeComponent } from './home/homepage.component';
 import { AdminAuthGuardService } from './admin-authguard.service';
 import { AdminAuthGuard } from './admin-authguard';
 import { LoginAuthGuard } from './login-authguard';
-import { CategoryListComponent } from './category-list/category-list/category-list.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     Error404Component,
-    HomeComponent,
-    CategoryListComponent
+    HomeComponent
   ],
   imports: [
     AppRoutingModule,
@@ -29,8 +28,7 @@ import { CategoryListComponent } from './category-list/category-list/category-li
     FormsModule,
     ProductModule,
     AdminModule,
-    SharedModule
-    
+    NgbModule.forRoot()
   ],
   providers: [LoginService, AdminAuthGuardService, AdminAuthGuard, LoginAuthGuard],
   bootstrap: [AppComponent]

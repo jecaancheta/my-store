@@ -1,24 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from './../../shared/product.service';
 import { CategoryService } from './../../shared/category.service';
-import { ProductList } from './product-list';
 import { ICategory } from './../../shared/category';
 import { IProduct } from './../../shared/product';
-import  { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-product-list',
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  selector: 'category-list',
+  templateUrl: './category-list.component.html',
+  styleUrls: ['./category-list.component.css']
 })
-export class ProductListComponent implements OnInit {
+export class CategoryListComponent implements OnInit {
   searchTerm: String = '';
   categories: ICategory[] = [];
   products: IProduct[] = [];
 
   constructor(private categoryService: CategoryService,
     private productService: ProductService,
-  private route: ActivatedRoute) { }
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.categories = this.route.snapshot.data['categories'];
@@ -31,7 +30,7 @@ export class ProductListComponent implements OnInit {
       noSearchTerm = true;
     }
     if (this.products != null && this.products.length > 0) {
-      return this.products.filter(product => 
+      return this.products.filter(product =>
         product.categoryId === categoryId && (noSearchTerm || product.name.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()))
       );
     }

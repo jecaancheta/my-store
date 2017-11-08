@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { LoginAuthGuard } from './login-authguard';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/products', pathMatch: 'full' }
+    { path: '', redirectTo: '/categories', pathMatch: 'full' }
     // { path: 'login', component: LoginComponent },
     // { path: '404', component: Error404Component  }
 ];

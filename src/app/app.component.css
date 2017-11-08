@@ -1,1 +1,5 @@
-.dropdown.open .dropdown-menu { display: block; }
+#app-body {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
