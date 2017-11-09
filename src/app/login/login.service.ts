@@ -6,20 +6,25 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 
-
-
-
 @Injectable()
 export class LoginService {
-  private loginStatus: boolean = false;
+  private currentUser: IUser;
 
   private userUrl = "http://localhost:8090/users";
   
   constructor(private http: Http) { }
   
-  getUserDetails(): Observable<IUser[]> {
+  loginUser(username: string, password: string): Observable<IUser[]> {
     return this.http.get(this.userUrl)
           .map((response: Response) => <IUser[]>response.json())
+          .do(res => {
+            let user = res.find(user => user.username === username && user.password === password);
+            if (user != null) {
+              this.currentUser = user;
+            } else {
+              return false;
+            }
+          })
           .catch(this.handleError);
   }
   
@@ -29,10 +34,6 @@ export class LoginService {
   }
 
   isLoggedIn() {
-    return this.loginStatus;
-  }
-
-  setLoginStatus(value: boolean) {
-    this.loginStatus = value;
+    return this.currentUser != null;
   }
 }

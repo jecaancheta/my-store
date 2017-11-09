@@ -6,7 +6,6 @@ import { ProductModule } from './products/product.module';
 import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
-import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
 import { Error404Component } from './errors/404.component';
 import { HomeComponent } from './home/homepage.component';
@@ -18,7 +17,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     Error404Component,
     HomeComponent
   ],

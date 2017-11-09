@@ -8,17 +8,26 @@
         </button>
         <a class="navbar-brand" href="#">MyStore</a>
         <div class="collapse navbar-collapse" id="appNavigation" [ngbCollapse]="isCollapsed">
-          <div class="navbar-nav mr-auto">
-            <a class="nav-item nav-link" [routerLink]="['categories']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Products</a>
-            <div class="nav-item dropdown" ngbDropdown>
-              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" ngbDropdownToggle>
-                Manage Store
-              </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
-                <button class="dropdown-item" [routerLink]="['manage/category']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Category</button>
-                <button class="dropdown-item" [routerLink]="['manage/product']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Product</button>
+          <div class="col-5">
+            <div class="navbar-nav mr-auto" *ngIf="isUserLoggedIn()">
+              <a class="nav-item nav-link" [routerLink]="['categories']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Products</a>
+              <div class="nav-item dropdown" ngbDropdown>
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" ngbDropdownToggle>
+                  Manage Store
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
+                  <button class="dropdown-item" [routerLink]="['manage/category']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Category</button>
+                  <button class="dropdown-item" [routerLink]="['manage/product']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Product</button>
+                </div>
               </div>
             </div>
+          </div>
+          <div class="col" *ngIf="!isUserLoggedIn()">
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2 login-input" type="text" placeholder="Username" [(ngModel)]="username" name="username">
+              <input class="form-control mr-sm-2 login-input" type="text" placeholder="Password" [(ngModel)]="password" name="password">  
+              <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" (click)="loginUser()">Login</button>
+            </form>
           </div>
         </div>
       </nav>
