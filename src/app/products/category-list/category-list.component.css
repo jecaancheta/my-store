@@ -1,0 +1,20 @@
+.row {
+    padding: 10px;
+}
+
+#category-list {
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.category-title {
+    background-color: #f0f3f5;
+    border-bottom: 1px solid #ced4da;
+    font-weight: bold;
+}
+
+#search {
+    width: 25%;
+    float: right;
+}

@@ -1,0 +1,41 @@
+<div class="row category">
+    <div class="col-8">
+        <a routerLink="/categories/{{item.id}}" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">{{ item.name }}</a>
+    </div>
+    <div class="col-3">
+        {{ getTotalStocks() }}
+    </div>
+    <div class="col">
+        <span [ngClass]="getCollapsibleIcon()" (click)="toggleContent()"></span>
+    </div>
+</div>
+<ng-container *ngIf="visible">
+    <div class="row products row-title">
+        <div class="col-1">
+
+        </div>
+        <div class="col-4">
+            Product Name
+        </div>
+        <div class="col-3">
+            Price 
+        </div>
+        <div class="col-4">
+            Available Stocks
+        </div>
+    </div>
+    <div class="row products" *ngFor="let product of itemProducts">
+        <div class="col-1">
+
+        </div>
+        <div class="col-4">
+            <a routerLink="/products/{{product.id}}" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">{{ product.name }}</a>
+        </div>
+        <div class="col-3">
+            {{ product.price | currency }}
+        </div>
+        <div class="col-4">
+            {{ product.stocks }}
+        </div>
+    </div>
+</ng-container>

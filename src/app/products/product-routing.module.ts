@@ -7,7 +7,8 @@ import { ProductResolver } from './../shared/product-resolver.service';
 
 const routes: Routes = [
   { path: 'categories', component: CategoryListComponent, resolve: { products: ProductResolver, categories: CategoryResolver } },
-  { path: 'products/:id', component: ProductDetailComponent }
+  { path: 'products/:productId', component: ProductDetailComponent },
+  { path: 'categories/:categoryId', component: ProductDetailComponent }
 ];
 
 @NgModule({

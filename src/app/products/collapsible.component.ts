@@ -3,8 +3,9 @@ import { ICategory } from './../shared/category';
 import { IProduct } from './../shared/product';
 
 @Component({
-    selector: 'app-product-collapsible',
-    templateUrl: 'collapsible.html'
+    selector: 'product-collapsible',
+    templateUrl: './collapsible.component.html',
+    styleUrls: ['./collapsible.component.css']
 })
 
 export class CollapsibleComponent {
@@ -14,6 +15,10 @@ export class CollapsibleComponent {
 
     toggleContent() {
         this.visible = !this.visible;
+    }
+
+    areProductsVisible() {
+        return this.visible && (this.itemProducts != null && this.itemProducts.length > 0);
     }
 
     getCollapsibleIcon() {

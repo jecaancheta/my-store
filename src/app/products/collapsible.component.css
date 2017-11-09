@@ -1,0 +1,10 @@
+.row {
+    padding: 10px;
+}
+
+.row-title {
+    background-color: #f0f3f5;
+    border-bottom: 1px solid #ced4da;
+    border-top: 1px solid #ced4da;
+    font-weight: bold;
+}

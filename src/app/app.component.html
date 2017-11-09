@@ -1,4 +1,4 @@
-<div id="my-store-app">
+<div id="my-store-app" class="container">
   <div id="app-header" class="row">
     <div class="col">
       <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
@@ -9,7 +9,7 @@
         <a class="navbar-brand" href="#">MyStore</a>
         <div class="collapse navbar-collapse" id="appNavigation" [ngbCollapse]="isCollapsed">
           <div class="navbar-nav mr-auto">
-            <a class="nav-item nav-link" [routerLink]="['products']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Products</a>
+            <a class="nav-item nav-link" [routerLink]="['categories']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Products</a>
             <div class="nav-item dropdown" ngbDropdown>
               <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" ngbDropdownToggle>
                 Manage Store
